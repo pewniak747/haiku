@@ -7,3 +7,7 @@ LineTemplate::LineTemplate(std::vector<WordTemplate*> wordTemplates, std::string
   this->wordTemplates = wordTemplates;
   this->japanese = japanese;
 }
+
+unsigned LineTemplate::wordsCount() {
+  return this->wordTemplates.size();
+}

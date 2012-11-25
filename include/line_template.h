@@ -9,6 +9,7 @@
 class LineTemplate {
   public:
     LineTemplate(std::vector<WordTemplate*> wordTemplates, std::string japanese);
+    unsigned wordsCount();
   private:
     std::vector<WordTemplate*> wordTemplates;
     std::string japanese;
