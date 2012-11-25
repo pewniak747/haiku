@@ -19,6 +19,7 @@ Poem* PoemGenerator::getPoem() {
     std::string line = "";
     LineTemplate *lineTemplate = poemTemplate->getLine(i);
     for(unsigned l = 0; l < lineTemplate->wordsCount(); l++) {
+      WordTemplate *wordTemplate = lineTemplate->getWord(l);
       int selected = rand() % this->wordRepository.size();
       line += this->wordRepository[selected]->getJapanese();
       if(l != 3) line += " ";
