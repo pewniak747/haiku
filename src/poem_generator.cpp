@@ -12,6 +12,7 @@ PoemGenerator::PoemGenerator() {
 }
 
 Poem* PoemGenerator::getPoem() {
+  PoemTemplate *poemTemplate = this->getRandomTemplate();
   srand(time(0));
   std::vector<std::string> lines;
   for(int i = 0; i < 3; i++) {
@@ -55,4 +56,10 @@ void PoemGenerator::loadTemplateRepository() {
   threeLines.push_back(thirdLine);
   this->templateRepository.push_back(new PoemTemplate(threeLines));
   printf("[ DEBUG ] loaded template repository\n");
+}
+
+PoemTemplate* PoemGenerator::getRandomTemplate() {
+  srand(time(0));
+  int random = rand() % this->templateRepository.size();
+  return this->templateRepository[random];
 }

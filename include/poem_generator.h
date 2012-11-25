@@ -11,6 +11,7 @@ class PoemGenerator {
   private:
     void loadWordRepository();
     void loadTemplateRepository();
+    PoemTemplate *getRandomTemplate();
     std::vector<Word*> wordRepository;
     std::vector<PoemTemplate*> templateRepository;
 };
