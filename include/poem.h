@@ -4,12 +4,14 @@
 #include <string>
 #include <vector>
 
+#include "line.h"
+
 class Poem {
   public:
-    Poem(std::vector<std::string> lines);
+    Poem(std::vector<Line*> lines);
     std::string toString();
   private:
-    std::vector<std::string> lines;
+    std::vector<Line*> lines;
 };
 
 #endif // POEM_H

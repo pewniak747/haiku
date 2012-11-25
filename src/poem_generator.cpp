@@ -14,17 +14,17 @@ PoemGenerator::PoemGenerator() {
 
 Poem* PoemGenerator::getPoem() {
   PoemTemplate *poemTemplate = this->getRandomTemplate();
-  std::vector<std::string> lines;
+  std::vector<Line*> lines;
   for(unsigned i = 0; i < poemTemplate->linesCount(); i++) {
-    std::string line = "";
     LineTemplate *lineTemplate = poemTemplate->getLine(i);
+    std::vector<Word*> lineWords;
     for(unsigned l = 0; l < lineTemplate->wordsCount(); l++) {
       WordTemplate *wordTemplate = lineTemplate->getWord(l);
       Word* selectedWord = this->getWordForTemplate(wordTemplate);
-      line += selectedWord->getJapanese();
-      if(l != 3) line += " ";
+      lineWords.push_back(selectedWord);
     }
-    lines.push_back(line);
+    Line *newLine = new Line(lineWords, lineTemplate);
+    lines.push_back(newLine);
   }
   printf("[ DEBUG ] generated lines\n");
   Poem *poem = new Poem(lines);
