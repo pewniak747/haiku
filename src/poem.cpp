@@ -8,7 +8,7 @@ Poem::Poem(std::vector<std::string> lines) {
 
 std::string Poem::toString() {
   std::string result = "";
-  for(int i = 0; i < lines.size(); i++) {
+  for(unsigned i = 0; i < lines.size(); i++) {
     result += this->lines[i];
     result += "\n";
   }
