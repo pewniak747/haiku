@@ -6,5 +6,5 @@ Line::Line(std::vector<Word*> words, LineTemplate *lineTemplate) {
 }
 
 std::string Line::getJapanese() {
-  return "";
+  return this->lineTemplate->getJapaneseTemplate();
 }

@@ -8,6 +8,10 @@ LineTemplate::LineTemplate(std::vector<WordTemplate*> wordTemplates, std::string
   this->japanese = japanese;
 }
 
+std::string LineTemplate::getJapaneseTemplate() {
+  return this->japanese;
+}
+
 WordTemplate* LineTemplate::getWord(unsigned i) {
   return this->wordTemplates[i];
 }
