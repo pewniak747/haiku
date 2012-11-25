@@ -6,6 +6,7 @@
 #include "poem_generator.h"
 
 PoemGenerator::PoemGenerator() {
+  srand(time(0));
   this->loadWordRepository();
   this->loadTemplateRepository();
   printf("[ DEBUG ] created poem generator\n");
@@ -13,15 +14,14 @@ PoemGenerator::PoemGenerator() {
 
 Poem* PoemGenerator::getPoem() {
   PoemTemplate *poemTemplate = this->getRandomTemplate();
-  srand(time(0));
   std::vector<std::string> lines;
   for(unsigned i = 0; i < poemTemplate->linesCount(); i++) {
     std::string line = "";
     LineTemplate *lineTemplate = poemTemplate->getLine(i);
     for(unsigned l = 0; l < lineTemplate->wordsCount(); l++) {
       WordTemplate *wordTemplate = lineTemplate->getWord(l);
-      int selected = rand() % this->wordRepository.size();
-      line += this->wordRepository[selected]->getJapanese();
+      Word* selectedWord = this->getWordForTemplate(wordTemplate);
+      line += selectedWord->getJapanese();
       if(l != 3) line += " ";
     }
     lines.push_back(line);
@@ -61,7 +61,11 @@ void PoemGenerator::loadTemplateRepository() {
 }
 
 PoemTemplate* PoemGenerator::getRandomTemplate() {
-  srand(time(0));
   int random = rand() % this->templateRepository.size();
   return this->templateRepository[random];
+}
+
+Word* PoemGenerator::getWordForTemplate(WordTemplate *wordTemplate) {
+  int random = rand() % this->wordRepository.size();
+  return this->wordRepository[random];
 }
