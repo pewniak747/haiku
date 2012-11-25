@@ -1,4 +1,5 @@
 #include "poem_template.h"
 
-PoemTemplate::PoemTemplate() {
+PoemTemplate::PoemTemplate(std::vector<LineTemplate*> lineTemplates) {
+  this->lineTemplates = lineTemplates;
 }

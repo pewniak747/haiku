@@ -38,6 +38,21 @@ void PoemGenerator::loadWordRepository() {
 }
 
 void PoemGenerator::loadTemplateRepository() {
-  this->templateRepository.push_back(new PoemTemplate());
+  std::vector<WordTemplate*> firstLineWords;
+  firstLineWords.push_back(new WordTemplate("noun:place"));
+  std::vector<WordTemplate*> secondLineWords;
+  secondLineWords.push_back(new WordTemplate("noun:animal"));
+  secondLineWords.push_back(new WordTemplate("verb:*"));
+  std::vector<WordTemplate*> thirdLineWords;
+  thirdLineWords.push_back(new WordTemplate("noun:element"));
+  thirdLineWords.push_back(new WordTemplate("noun:element"));
+  LineTemplate *firstLine = new LineTemplate(firstLineWords, "$1 ya");
+  LineTemplate *secondLine = new LineTemplate(secondLineWords, "$1 $2");
+  LineTemplate *thirdLine = new LineTemplate(thirdLineWords, "$1 no $2");
+  std::vector<LineTemplate*> threeLines;
+  threeLines.push_back(firstLine);
+  threeLines.push_back(secondLine);
+  threeLines.push_back(thirdLine);
+  this->templateRepository.push_back(new PoemTemplate(threeLines));
   printf("[ DEBUG ] loaded template repository\n");
 }
