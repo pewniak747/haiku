@@ -7,6 +7,7 @@
 
 PoemGenerator::PoemGenerator() {
   this->loadWordRepository();
+  this->loadTemplateRepository();
   printf("[ DEBUG ] created poem generator\n");
 }
 
@@ -34,4 +35,9 @@ void PoemGenerator::loadWordRepository() {
   this->wordRepository.push_back(new Word("mizu", "noun:element"));
   this->wordRepository.push_back(new Word("oto", "noun:element"));
   printf("[ DEBUG ] loaded word repository\n");
+}
+
+void PoemGenerator::loadTemplateRepository() {
+  this->templateRepository.push_back(new PoemTemplate());
+  printf("[ DEBUG ] loaded template repository\n");
 }
