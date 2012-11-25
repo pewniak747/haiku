@@ -6,6 +6,7 @@
 class PoemTemplate {
   public:
     PoemTemplate(std::vector<LineTemplate*> lineTemplates);
+    unsigned linesCount();
   private:
     std::vector<LineTemplate*> lineTemplates;
 };

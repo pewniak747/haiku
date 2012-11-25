@@ -15,7 +15,7 @@ Poem* PoemGenerator::getPoem() {
   PoemTemplate *poemTemplate = this->getRandomTemplate();
   srand(time(0));
   std::vector<std::string> lines;
-  for(int i = 0; i < 3; i++) {
+  for(unsigned i = 0; i < poemTemplate->linesCount(); i++) {
     std::string line = "";
     for(int l = 0; l < 3; l++) {
       int selected = rand() % this->wordRepository.size();
