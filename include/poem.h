@@ -9,7 +9,7 @@
 class Poem {
   public:
     Poem(std::vector<Line*> lines);
-    std::string toString();
+    std::string toString(std::string (*wordToString)(Word *word));
   private:
     std::vector<Line*> lines;
 };

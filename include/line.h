@@ -10,7 +10,7 @@
 class Line {
   public:
     Line(std::vector<Word*> words, LineTemplate *lineTemplate);
-    std::string toString();
+    std::string toString(std::string (*wordToString)(Word *word));
   private:
     std::vector<Word*> words;
     LineTemplate *lineTemplate;

@@ -7,10 +7,10 @@ Line::Line(std::vector<Word*> words, LineTemplate *lineTemplate) {
   this->lineTemplate = lineTemplate;
 }
 
-std::string Line::toString() {
-  std::string resultString = this->lineTemplate->getJapaneseTemplate();
-  for(unsigned i = 0; i < this->words.size(); i++) {
-    std::string replacementString = this->words[i]->getJapanese();
+std::string Line::toString(std::string (*wordToString)(Word *word)) {
+  std::string resultString = lineTemplate->getJapaneseTemplate();
+  for(unsigned i = 0; i < words.size(); i++) {
+    std::string replacementString = wordToString(words[i]);
     std::ostringstream replacedString;
     replacedString << "$" << (i+1);
     int findPosition = resultString.find(replacedString.str());
