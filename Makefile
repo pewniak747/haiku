@@ -6,7 +6,7 @@ TARGET=bin/haiku
 CFLAGS=-I./include -g -Wall -lm -o $(TARGET)
 LDFLAGS=-lm
 
-SRCS=haiku.cpp poem.cpp poem_generator.cpp word.cpp poem_template.cpp word_template.cpp line_template.cpp line.cpp
+SRCS=haiku.cpp poem.cpp poem_generator.cpp word.cpp poem_template.cpp word_template.cpp line_template.cpp line.cpp repository.cpp
 
 OBJS=$(addsuffix .o, $(SRCS))
 MOBJS=$(addprefix bin/, $(OBJS))
