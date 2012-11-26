@@ -2,6 +2,7 @@
 #define POEM_GENERATOR_H
 
 #include "word.h"
+#include "poem.h"
 #include "poem_template.h"
 #include "repository.h"
 

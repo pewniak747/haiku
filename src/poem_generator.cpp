@@ -2,10 +2,7 @@
 #include <cstdlib>
 #include <ctime>
 
-#include "poem.h"
 #include "poem_generator.h"
-#include "repository.h"
-#include "repository.cpp"
 
 PoemGenerator::PoemGenerator() {
   srand(time(0));
@@ -67,5 +64,5 @@ PoemTemplate* PoemGenerator::getRandomTemplate() {
 }
 
 Word* PoemGenerator::getWordForTemplate(WordTemplate *wordTemplate) {
-  return this->wordRepository.getRandomElement();
+  return this->wordRepository.getWordForTemplate(wordTemplate);
 }
