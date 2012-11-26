@@ -19,4 +19,10 @@ class JapaneseKanjiRenderer : public Renderer {
     std::string toString();
 };
 
+class EnglishRenderer : public Renderer {
+  public:
+    EnglishRenderer(Poem *poem) : Renderer(poem) {};
+    std::string toString();
+};
+
 #endif // RENDERER_H

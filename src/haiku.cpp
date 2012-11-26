@@ -8,6 +8,7 @@ int main() {
   Poem *poem = poemGenerator->getPoem();
   std::string generatedKanjiPoem, generatedKanaPoem, generatedRomajiPoem, generatedEnglishPoem;
   generatedKanjiPoem = (new JapaneseKanjiRenderer(poem))->toString();
+  generatedEnglishPoem = (new EnglishRenderer(poem))->toString();
 
   printf("KANJI:\n");
   printf("%s", generatedKanjiPoem.c_str());
