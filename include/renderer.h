@@ -13,9 +13,9 @@ class Renderer {
     Poem *poem;
 };
 
-class JapaneseRenderer : public Renderer {
+class JapaneseKanjiRenderer : public Renderer {
   public:
-    JapaneseRenderer(Poem *poem) : Renderer(poem) {};
+    JapaneseKanjiRenderer(Poem *poem) : Renderer(poem) {};
     std::string toString();
 };
 

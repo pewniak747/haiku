@@ -5,11 +5,17 @@
 
 class Word {
   public:
-    Word(std::string japanese, std::string type);
-    std::string getJapanese();
+    Word(std::string kanji, std::string kana, std::string romaji, std::string english, std::string type);
+    std::string getJapaneseKanji();
+    std::string getJapaneseKana();
+    std::string getJapaneseRomaji();
+    std::string getEnglish();
     std::string getType();
   private:
-    std::string japanese;
+    std::string japaneseKanji;
+    std::string japaneseKana;
+    std::string japaneseRomaji;
+    std::string english;
     std::string type;
 };
 

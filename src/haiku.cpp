@@ -6,7 +6,7 @@
 int main() {
   PoemGenerator *poemGenerator = new PoemGenerator();
   Poem *poem = poemGenerator->getPoem();
-  Renderer *renderer = new JapaneseRenderer(poem);
+  Renderer *renderer = new JapaneseKanjiRenderer(poem);
   std::string generatedPoem = renderer->toString();
   printf("%s", generatedPoem.c_str());
 }

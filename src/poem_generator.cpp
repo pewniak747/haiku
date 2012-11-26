@@ -31,11 +31,11 @@ Poem* PoemGenerator::getPoem() {
 }
 
 void PoemGenerator::loadWordRepository() {
-  this->wordRepository.add(new Word("furuike", "noun:place"));
-  this->wordRepository.add(new Word("kawazu", "noun:animal"));
-  this->wordRepository.add(new Word("tobikomu", "verb"));
-  this->wordRepository.add(new Word("mizu", "noun:element"));
-  this->wordRepository.add(new Word("oto", "noun:element"));
+  this->wordRepository.add(new Word("古池", "ふるいけ", "furuike", "old pond", "noun:place"));
+  this->wordRepository.add(new Word("蛙", "かわず", "kawazu", "frog", "noun:animal"));
+  this->wordRepository.add(new Word("飛び込む", "とびこむ", "tobikomu", "leap in", "verb"));
+  this->wordRepository.add(new Word("水", "みず", "mizu", "water", "noun:element"));
+  this->wordRepository.add(new Word("音", "おと", "oto", "sound", "noun:element"));
   printf("[ DEBUG ] loaded word repository\n");
 }
 

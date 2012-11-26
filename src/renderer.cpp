@@ -1,13 +1,13 @@
 #include "renderer.h"
 
-std::string wordToJapaneseConverter(Word *word) {
-  return word->getJapanese();
+std::string wordToJapaneseKanjiConverter(Word *word) {
+  return word->getJapaneseKanji();
 };
 
 Renderer::Renderer(Poem *poem) {
   this->poem = poem;
 }
 
-std::string JapaneseRenderer::toString() {
-  return poem->toString(&wordToJapaneseConverter);
+std::string JapaneseKanjiRenderer::toString() {
+  return poem->toString(&wordToJapaneseKanjiConverter);
 }
