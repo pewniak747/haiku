@@ -17,6 +17,12 @@ class Repository {
       int random = rand() % this->elements.size();
       return this->elements[random];
     };
+    unsigned size() {
+      return this->elements.size();
+    }
+    T* getElement(unsigned index) {
+      return this->elements[index];
+    }
   protected:
     std::vector<T*> elements;
 };
@@ -24,7 +30,11 @@ class Repository {
 class WordRepository : public Repository<Word> {
   public:
     Word* getWordForTemplate(WordTemplate *wordTemplate) {
-      return this->getRandomElement();
+      WordRepository filteredRepository;
+      for(unsigned i = 0; i < this->size(); i++) {
+        filteredRepository.add(this->getElement(i));
+      }
+      return filteredRepository.getRandomElement();
     };
 };
 
