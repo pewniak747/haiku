@@ -4,6 +4,8 @@
 
 #include "poem.h"
 #include "poem_generator.h"
+#include "repository.h"
+#include "repository.cpp"
 
 PoemGenerator::PoemGenerator() {
   srand(time(0));
@@ -32,11 +34,11 @@ Poem* PoemGenerator::getPoem() {
 }
 
 void PoemGenerator::loadWordRepository() {
-  this->wordRepository.push_back(new Word("furuike", "noun:place"));
-  this->wordRepository.push_back(new Word("kawazu", "noun:animal"));
-  this->wordRepository.push_back(new Word("tobikomu", "verb"));
-  this->wordRepository.push_back(new Word("mizu", "noun:element"));
-  this->wordRepository.push_back(new Word("oto", "noun:element"));
+  this->wordRepository.add(new Word("furuike", "noun:place"));
+  this->wordRepository.add(new Word("kawazu", "noun:animal"));
+  this->wordRepository.add(new Word("tobikomu", "verb"));
+  this->wordRepository.add(new Word("mizu", "noun:element"));
+  this->wordRepository.add(new Word("oto", "noun:element"));
   printf("[ DEBUG ] loaded word repository\n");
 }
 
@@ -56,16 +58,14 @@ void PoemGenerator::loadTemplateRepository() {
   threeLines.push_back(firstLine);
   threeLines.push_back(secondLine);
   threeLines.push_back(thirdLine);
-  this->templateRepository.push_back(new PoemTemplate(threeLines));
+  this->templateRepository.add(new PoemTemplate(threeLines));
   printf("[ DEBUG ] loaded template repository\n");
 }
 
 PoemTemplate* PoemGenerator::getRandomTemplate() {
-  int random = rand() % this->templateRepository.size();
-  return this->templateRepository[random];
+  return this->templateRepository.getRandomElement();
 }
 
 Word* PoemGenerator::getWordForTemplate(WordTemplate *wordTemplate) {
-  int random = rand() % this->wordRepository.size();
-  return this->wordRepository[random];
+  return this->wordRepository.getRandomElement();
 }

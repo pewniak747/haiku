@@ -3,6 +3,7 @@
 
 #include "word.h"
 #include "poem_template.h"
+#include "repository.h"
 
 class PoemGenerator {
   public:
@@ -13,8 +14,8 @@ class PoemGenerator {
     void loadTemplateRepository();
     PoemTemplate *getRandomTemplate();
     Word* getWordForTemplate(WordTemplate *wordTemplate);
-    std::vector<Word*> wordRepository;
-    std::vector<PoemTemplate*> templateRepository;
+    WordRepository wordRepository;
+    PoemTemplateRepository templateRepository;
 };
 
 #endif // POEM_GENERATOR_H

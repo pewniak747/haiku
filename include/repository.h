@@ -9,14 +9,14 @@
 template<class T>
 class Repository {
   public:
-    void add(T element);
-    T getRandomElement();
-  private:
-    std::vector<T> elements;
+    void add(T *element);
+    T* getRandomElement();
+  protected:
+    std::vector<T*> elements;
 };
 
-class WordRepository : Repository<Word> {};
+class WordRepository : public Repository<Word> {};
 
-class PoemTemplateRepository : Repository<PoemTemplate> {};
+class PoemTemplateRepository : public Repository<PoemTemplate> {};
 
 #endif // REPOSITORY_H
