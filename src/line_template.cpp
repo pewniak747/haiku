@@ -14,6 +14,14 @@ std::string LineTemplate::getJapaneseTemplate() {
   return this->japanese;
 }
 
+std::string LineTemplate::getRomajiTemplate() {
+  return this->romaji;
+}
+
+std::string LineTemplate::getEnglishTemplate() {
+  return this->english;
+}
+
 WordTemplate* LineTemplate::getWord(unsigned i) {
   return this->wordTemplates[i];
 }
