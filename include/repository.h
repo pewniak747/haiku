@@ -32,7 +32,8 @@ class WordRepository : public Repository<Word> {
     Word* getWordForTemplate(WordTemplate *wordTemplate) {
       WordRepository filteredRepository;
       for(unsigned i = 0; i < size(); i++) {
-        filteredRepository.add(getElement(i));
+        if(wordTemplate->matches(getElement(i)->getType()))
+          filteredRepository.add(getElement(i));
       }
       return filteredRepository.getRandomElement();
     };

@@ -10,3 +10,8 @@ Word::Word(std::string japanese, std::string type) {
 std::string Word::getJapanese() {
   return this->japanese;
 }
+
+std::string Word::getType() {
+  return this->type;
+}
+

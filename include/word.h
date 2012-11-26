@@ -7,6 +7,7 @@ class Word {
   public:
     Word(std::string japanese, std::string type);
     std::string getJapanese();
+    std::string getType();
   private:
     std::string japanese;
     std::string type;
