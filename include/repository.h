@@ -11,17 +11,17 @@ template<typename T>
 class Repository {
   public:
     void add(T *element) {
-      this->elements.push_back(element);
+      elements.push_back(element);
     };
     T* getRandomElement() {
-      int random = rand() % this->elements.size();
-      return this->elements[random];
+      int random = rand() % elements.size();
+      return elements[random];
     };
     unsigned size() {
-      return this->elements.size();
+      return elements.size();
     }
     T* getElement(unsigned index) {
-      return this->elements[index];
+      return elements[index];
     }
   protected:
     std::vector<T*> elements;
@@ -31,8 +31,8 @@ class WordRepository : public Repository<Word> {
   public:
     Word* getWordForTemplate(WordTemplate *wordTemplate) {
       WordRepository filteredRepository;
-      for(unsigned i = 0; i < this->size(); i++) {
-        filteredRepository.add(this->getElement(i));
+      for(unsigned i = 0; i < size(); i++) {
+        filteredRepository.add(getElement(i));
       }
       return filteredRepository.getRandomElement();
     };
