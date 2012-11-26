@@ -16,22 +16,26 @@ std::string wordToEnglishConverter(Word *word) {
   return word->getEnglish();
 };
 
+std::string lineToJapaneseTemplate(LineTemplate *line) {
+  return line->getJapaneseTemplate();
+}
+
 Renderer::Renderer(Poem *poem) {
   this->poem = poem;
 }
 
 std::string JapaneseKanjiRenderer::toString() {
-  return poem->toString(&wordToJapaneseKanjiConverter);
+  return poem->toString(&wordToJapaneseKanjiConverter, &lineToJapaneseTemplate);
 }
 
 std::string JapaneseKanaRenderer::toString() {
-  return poem->toString(&wordToJapaneseKanaConverter);
+  return poem->toString(&wordToJapaneseKanaConverter, &lineToJapaneseTemplate);
 }
 
 std::string JapaneseRomajiRenderer::toString() {
-  return poem->toString(&wordToJapaneseRomajiConverter);
+  return poem->toString(&wordToJapaneseRomajiConverter, &lineToJapaneseTemplate);
 }
 
 std::string EnglishRenderer::toString() {
-  return poem->toString(&wordToEnglishConverter);
+  return poem->toString(&wordToEnglishConverter, &lineToJapaneseTemplate);
 }

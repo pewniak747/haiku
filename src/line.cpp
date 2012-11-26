@@ -7,8 +7,8 @@ Line::Line(std::vector<Word*> words, LineTemplate *lineTemplate) {
   this->lineTemplate = lineTemplate;
 }
 
-std::string Line::toString(std::string (*wordToString)(Word *word)) {
-  std::string resultString = lineTemplate->getJapaneseTemplate();
+std::string Line::toString(std::string (*wordToString)(Word *word), std::string (*lineToTemplateString)(LineTemplate *line)) {
+  std::string resultString = lineToTemplateString(lineTemplate);
   for(unsigned i = 0; i < words.size(); i++) {
     std::string replacementString = wordToString(words[i]);
     std::ostringstream replacedString;
