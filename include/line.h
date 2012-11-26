@@ -10,7 +10,7 @@
 class Line {
   public:
     Line(std::vector<Word*> words, LineTemplate *lineTemplate);
-    std::string getJapanese();
+    std::string toString();
   private:
     std::vector<Word*> words;
     LineTemplate *lineTemplate;

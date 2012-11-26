@@ -7,7 +7,7 @@ Line::Line(std::vector<Word*> words, LineTemplate *lineTemplate) {
   this->lineTemplate = lineTemplate;
 }
 
-std::string Line::getJapanese() {
+std::string Line::toString() {
   std::string resultString = this->lineTemplate->getJapaneseTemplate();
   for(unsigned i = 0; i < this->words.size(); i++) {
     std::string replacementString = this->words[i]->getJapanese();
