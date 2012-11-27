@@ -20,11 +20,15 @@ class Repository {
 
 class WordRepository : public Repository<Word> {
   public:
-    Word* getWordForTemplate(WordTemplate *wordTemplate) {
+    Word* getWordForTemplate(WordTemplate *wordTemplate, unsigned minSyllabes, unsigned maxSyllabes) {
       WordRepository filteredRepository;
       for(unsigned i = 0; i < size(); i++) {
-        if(wordTemplate->matches(getElement(i)->getType()))
+        Word *element = getElement(i);
+        if(minSyllabes <= element->getSyllabes() &&
+           maxSyllabes >= element->getSyllabes() &&
+           wordTemplate->matches(element->getType())) {
           filteredRepository.add(getElement(i));
+        }
       }
       return filteredRepository.getRandomElement();
     };

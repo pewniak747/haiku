@@ -17,6 +17,12 @@
     <romaji>tobikomu</romaji>
     <english>leap in</english>
   </word>
+  <word type="verb" syllabes="3" >
+    <kanji>遊ぶ</kanji>
+    <kana>あそぶ</kana>
+    <romaji>asobu</romaji>
+    <english>play</english>
+  </word>
   <word type="noun:element" syllabes="2" >
     <kanji>水</kanji>
     <kana>みず</kana>

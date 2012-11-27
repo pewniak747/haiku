@@ -41,5 +41,5 @@ Line* PoemGenerator::getLineForTemplate(LineTemplate *lineTemplate) {
 }
 
 Word* PoemGenerator::getWordForTemplate(WordTemplate *wordTemplate, unsigned minSyllabes, unsigned maxSyllabes) {
-  return this->wordRepository->getWordForTemplate(wordTemplate);
+  return this->wordRepository->getWordForTemplate(wordTemplate, minSyllabes, maxSyllabes);
 }
