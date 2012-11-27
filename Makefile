@@ -3,7 +3,7 @@ LD=g++
 
 TARGET=bin/haiku
 
-CFLAGS=-I./include -g -Wall -lm -lpthread -lxerces-c -o $(TARGET)
+CFLAGS=-I./include -L./lib -g -Wall -lm -lpthread -lxerces-c -o $(TARGET)
 LDFLAGS=-lm -lxerces-c
 
 SRCS=haiku.cpp poem.cpp poem_generator.cpp word.cpp poem_template.cpp word_template.cpp line_template.cpp line.cpp renderer.cpp
