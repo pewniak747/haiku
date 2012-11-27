@@ -5,6 +5,7 @@
       <romaji>$1 ya</romaji>
       <english>at a $1</english>
       <word>noun:place</word>
+      <syllabes>4</syllabes>
     </line>
     <line>
       <japanese>$1$2</japanese>
@@ -12,6 +13,7 @@
       <english>a $1 $2</english>
       <word>noun:animal</word>
       <word>verb:*</word>
+      <syllabes>7</syllabes>
     </line>
     <line>
       <japanese>$1の$2</japanese>
@@ -19,6 +21,7 @@
       <english>$1 of $2</english>
       <word>noun:element</word>
       <word>noun:element</word>
+      <syllabes>4</syllabes>
     </line>
   <template>
 </templates>

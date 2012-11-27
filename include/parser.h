@@ -113,6 +113,7 @@ void TemplateParser::parse() {
         if(strcmp(name, "line") == 0) {
           std::string japaneseString, romajiString, englishString;
           std::vector<WordTemplate*> words;
+          unsigned syllabesNum;
           for(DOMNode* nestedNestedChild=nestedChild->getFirstChild(); nestedNestedChild != 0; nestedNestedChild = nestedNestedChild->getNextSibling()) {
             char *name = XMLString::transcode(nestedNestedChild->getNodeName());
             char *value = XMLString::transcode(nestedNestedChild->getTextContent());
@@ -128,8 +129,11 @@ void TemplateParser::parse() {
             else if(strcmp(name, "word") == 0) {
               words.push_back(new WordTemplate(value));
             }
+            else if(strcmp(name, "syllabes") == 0) {
+              syllabesNum = atoi(value);
+            }
           }
-          lines.push_back(new LineTemplate(words, japaneseString, romajiString, englishString));
+          lines.push_back(new LineTemplate(words, japaneseString, romajiString, englishString, syllabesNum));
         }
       }
       pushElement(new PoemTemplate(lines));
