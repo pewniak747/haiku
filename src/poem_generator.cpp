@@ -25,14 +25,21 @@ PoemTemplate* PoemGenerator::getRandomTemplate() {
 
 Line* PoemGenerator::getLineForTemplate(LineTemplate *lineTemplate) {
   std::vector<Word*> lineWords;
+  unsigned syllabesLeft = lineTemplate->getSyllabes();
+  unsigned wordsLeft = lineTemplate->wordsCount();
+  unsigned minSyllabes = 0;
   for(unsigned l = 0; l < lineTemplate->wordsCount(); l++) {
+    if(wordsLeft == 1) minSyllabes = syllabesLeft;
     WordTemplate *wordTemplate = lineTemplate->getWord(l);
-    Word* selectedWord = this->getWordForTemplate(wordTemplate);
+    Word* selectedWord = this->getWordForTemplate(wordTemplate, minSyllabes, syllabesLeft);
+    syllabesLeft-=selectedWord->getSyllabes();
+
     lineWords.push_back(selectedWord);
+    wordsLeft--;
   }
   return new Line(lineWords, lineTemplate);
 }
 
-Word* PoemGenerator::getWordForTemplate(WordTemplate *wordTemplate) {
+Word* PoemGenerator::getWordForTemplate(WordTemplate *wordTemplate, unsigned minSyllabes, unsigned maxSyllabes) {
   return this->wordRepository->getWordForTemplate(wordTemplate);
 }

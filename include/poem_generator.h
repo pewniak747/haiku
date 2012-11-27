@@ -13,7 +13,7 @@ class PoemGenerator {
   private:
     PoemTemplate *getRandomTemplate();
     Line *getLineForTemplate(LineTemplate *lineTemplate);
-    Word* getWordForTemplate(WordTemplate *wordTemplate);
+    Word* getWordForTemplate(WordTemplate *wordTemplate, unsigned minSyllabes, unsigned maxSyllabes);
     WordRepository *wordRepository;
     PoemTemplateRepository *templateRepository;
 };
