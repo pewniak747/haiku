@@ -3,6 +3,7 @@
 
 #include "poem_generator.h"
 #include "word_parser.h"
+#include "template_parser.h"
 #include "renderer.h"
 
 using namespace xercesc;
@@ -17,7 +18,12 @@ int main() {
   WordRepository *wordRepository = new WordRepository();
   wordParser->loadToRepository(wordRepository);
 
-  PoemGenerator *poemGenerator = new PoemGenerator(wordRepository);
+  TemplateParser *templateParser = new TemplateParser("data/templates.xml");
+  templateParser->parse();
+  PoemTemplateRepository *templateRepository = new PoemTemplateRepository();
+  templateParser->loadToRepository(templateRepository);
+
+  PoemGenerator *poemGenerator = new PoemGenerator(wordRepository, templateRepository);
   Poem *poem = poemGenerator->getPoem();
   std::string generatedKanjiPoem, generatedKanaPoem, generatedRomajiPoem, generatedEnglishPoem;
   generatedKanjiPoem = (new JapaneseKanjiRenderer(poem))->toString();
