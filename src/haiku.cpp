@@ -7,6 +7,10 @@
 using namespace xercesc;
 
 int main() {
+  // initialize Xerces
+  try { XMLPlatformUtils::Initialize(); }
+  catch (const XMLException& toCatch) { return 1; }
+
   PoemGenerator *poemGenerator = new PoemGenerator();
   Poem *poem = poemGenerator->getPoem();
   std::string generatedKanjiPoem, generatedKanaPoem, generatedRomajiPoem, generatedEnglishPoem;
@@ -27,4 +31,7 @@ int main() {
   printf("ENGLISH:\n");
   printf("%s", generatedEnglishPoem.c_str());
   printf("\n");
+
+  // shutdown Xerces
+  XMLPlatformUtils::Terminate();
 }
