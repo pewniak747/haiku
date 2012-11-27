@@ -60,22 +60,22 @@ void Parser<T>::loadToRepository(Repository<T> *repository) {
 }
 
 void WordParser::parse() {
-  DOMElement *dom_root = getXMLRoot();
-  for (DOMNode* dom_child=dom_root->getFirstChild(); dom_child != 0; dom_child=dom_child->getNextSibling()) {
-    if (dom_child->getNodeType() == DOMNode::ELEMENT_NODE && strcmp(XMLString::transcode(dom_child->getNodeName()), "word") == 0) {
+  DOMElement *domRoot = getXMLRoot();
+  for (DOMNode* domChild=domRoot->getFirstChild(); domChild != 0; domChild=domChild->getNextSibling()) {
+    if (domChild->getNodeType() == DOMNode::ELEMENT_NODE && strcmp(XMLString::transcode(domChild->getNodeName()), "word") == 0) {
       std::string kanjiString, kanaString, romajiString, englishString, typeString;
 
-      DOMNamedNodeMap *dom_attrs = dom_child->getAttributes();
-      int num= dom_attrs->getLength();
+      DOMNamedNodeMap *domAttrs = domChild->getAttributes();
+      int num= domAttrs->getLength();
       for(int i=0; i < num; i++) {
-        DOMAttr* dom_attr = (DOMAttr*) dom_attrs->item(i);
-        char* name = XMLString::transcode(dom_attr->getName());
+        DOMAttr* domAttr = (DOMAttr*) domAttrs->item(i);
+        char* name = XMLString::transcode(domAttr->getName());
         if(strcmp(name, "type") == 0) {
-          typeString = XMLString::transcode(dom_attr->getValue());
+          typeString = XMLString::transcode(domAttr->getValue());
         }
       }
 
-      for(DOMNode* nestedChild=dom_child->getFirstChild(); nestedChild != 0; nestedChild = nestedChild->getNextSibling()) {
+      for(DOMNode* nestedChild=domChild->getFirstChild(); nestedChild != 0; nestedChild = nestedChild->getNextSibling()) {
         char *name = XMLString::transcode(nestedChild->getNodeName());
         char *value = XMLString::transcode(nestedChild->getTextContent());
         if(strcmp(name, "kanji") == 0) {
@@ -98,12 +98,12 @@ void WordParser::parse() {
 }
 
 void TemplateParser::parse() {
-  DOMElement *dom_root = getXMLRoot();
-  for (DOMNode* dom_child=dom_root->getFirstChild(); dom_child != 0; dom_child=dom_child->getNextSibling()) {
-    if (dom_child->getNodeType() == DOMNode::ELEMENT_NODE && strcmp(XMLString::transcode(dom_child->getNodeName()), "template") == 0) {
+  DOMElement *domRoot = getXMLRoot();
+  for (DOMNode* domChild=domRoot->getFirstChild(); domChild != 0; domChild=domChild->getNextSibling()) {
+    if (domChild->getNodeType() == DOMNode::ELEMENT_NODE && strcmp(XMLString::transcode(domChild->getNodeName()), "template") == 0) {
       std::vector<LineTemplate*> lines;
 
-      for(DOMNode* nestedChild=dom_child->getFirstChild(); nestedChild != 0; nestedChild = nestedChild->getNextSibling()) {
+      for(DOMNode* nestedChild=domChild->getFirstChild(); nestedChild != 0; nestedChild = nestedChild->getNextSibling()) {
         char *name = XMLString::transcode(nestedChild->getNodeName());
         if(strcmp(name, "line") == 0) {
           std::string japaneseString, romajiString, englishString;
