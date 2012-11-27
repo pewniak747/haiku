@@ -1,4 +1,3 @@
-#include <cstdio>
 #include "poem.h"
 
 Poem::Poem(std::vector<Line*> lines) {
