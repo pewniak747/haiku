@@ -42,7 +42,6 @@ int main() {
   printf("\n");
   printf("ENGLISH:\n");
   printf("%s", generatedEnglishPoem.c_str());
-  printf("\n");
 
   // shutdown Xerces
   XMLPlatformUtils::Terminate();
