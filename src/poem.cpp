@@ -3,7 +3,6 @@
 
 Poem::Poem(std::vector<Line*> lines) {
   this->lines = lines;
-  printf("[ DEBUG ] created poem\n");
 }
 
 std::string Poem::toString(std::string (*wordToString)(Word *word), std::string (*lineToTemplateString)(LineTemplate *line)) {

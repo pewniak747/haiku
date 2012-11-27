@@ -23,12 +23,10 @@ void TemplateParser::parse() {
   threeLines.push_back(secondLine);
   threeLines.push_back(thirdLine);
   parsedElements.push_back(new PoemTemplate(threeLines));
-  printf("[ DEBUG ] loaded template repository\n");
 }
 
 void TemplateParser::loadToRepository(PoemTemplateRepository *repository) {
   for(unsigned i = 0; i < parsedElements.size(); i++) {
     repository->add(parsedElements[i]);
   }
-  printf("[ DEBUG ] loaded word repository\n");
 }

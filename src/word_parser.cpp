@@ -53,5 +53,4 @@ void WordParser::loadToRepository(WordRepository *repository) {
   for(unsigned i = 0; i < parsedElements.size(); i++) {
     repository->add(parsedElements[i]);
   }
-  printf("[ DEBUG ] loaded word repository\n");
 }

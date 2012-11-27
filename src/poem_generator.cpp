@@ -8,7 +8,6 @@ PoemGenerator::PoemGenerator(WordRepository *wordRepository, PoemTemplateReposit
   srand(time(0));
   this->wordRepository = wordRepository;
   this->templateRepository = templateRepository;
-  printf("[ DEBUG ] created poem generator\n");
 }
 
 Poem* PoemGenerator::getPoem() {
@@ -25,9 +24,7 @@ Poem* PoemGenerator::getPoem() {
     Line *newLine = new Line(lineWords, lineTemplate);
     lines.push_back(newLine);
   }
-  printf("[ DEBUG ] generated lines\n");
-  Poem *poem = new Poem(lines);
-  return poem;
+  return new Poem(lines);
 }
 
 PoemTemplate* PoemGenerator::getRandomTemplate() {
