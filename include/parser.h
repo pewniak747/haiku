@@ -18,6 +18,7 @@ class Parser {
   protected:
     DOMElement *getXMLRoot();
     std::string xmlFileName;
+    void pushElement(T *element);
     std::vector<T*> parsedElements;
 };
 
@@ -36,6 +37,11 @@ class TemplateParser : public Parser<PoemTemplate> {
 template<typename T>
 Parser<T>::Parser(std::string fileName) {
   this->xmlFileName = fileName;
+}
+
+template<typename T>
+void Parser<T>::pushElement(T *element) {
+  parsedElements.push_back(element);
 }
 
 template<typename T>
@@ -86,7 +92,7 @@ void WordParser::parse() {
         }
       }
 
-      parsedElements.push_back(new Word(kanjiString, kanaString, romajiString, englishString, typeString));
+      pushElement(new Word(kanjiString, kanaString, romajiString, englishString, typeString));
     }
   }
 }
@@ -121,7 +127,7 @@ void TemplateParser::parse() {
           lines.push_back(new LineTemplate(words, japaneseString, romajiString, englishString));
         }
       }
-      parsedElements.push_back(new PoemTemplate(lines));
+      pushElement(new PoemTemplate(lines));
     }
   }
 }
