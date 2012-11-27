@@ -12,6 +12,7 @@ class PoemGenerator {
     Poem* getPoem();
   private:
     PoemTemplate *getRandomTemplate();
+    Line *getLineForTemplate(LineTemplate *lineTemplate);
     Word* getWordForTemplate(WordTemplate *wordTemplate);
     WordRepository *wordRepository;
     PoemTemplateRepository *templateRepository;

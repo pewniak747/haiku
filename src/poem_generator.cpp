@@ -14,13 +14,7 @@ Poem* PoemGenerator::getPoem() {
   std::vector<Line*> lines;
   for(unsigned i = 0; i < poemTemplate->linesCount(); i++) {
     LineTemplate *lineTemplate = poemTemplate->getLine(i);
-    std::vector<Word*> lineWords;
-    for(unsigned l = 0; l < lineTemplate->wordsCount(); l++) {
-      WordTemplate *wordTemplate = lineTemplate->getWord(l);
-      Word* selectedWord = this->getWordForTemplate(wordTemplate);
-      lineWords.push_back(selectedWord);
-    }
-    Line *newLine = new Line(lineWords, lineTemplate);
+    Line *newLine = getLineForTemplate(lineTemplate);
     lines.push_back(newLine);
   }
   return new Poem(lines);
@@ -28,6 +22,16 @@ Poem* PoemGenerator::getPoem() {
 
 PoemTemplate* PoemGenerator::getRandomTemplate() {
   return this->templateRepository->getRandomElement();
+}
+
+Line* PoemGenerator::getLineForTemplate(LineTemplate *lineTemplate) {
+  std::vector<Word*> lineWords;
+  for(unsigned l = 0; l < lineTemplate->wordsCount(); l++) {
+    WordTemplate *wordTemplate = lineTemplate->getWord(l);
+    Word* selectedWord = this->getWordForTemplate(wordTemplate);
+    lineWords.push_back(selectedWord);
+  }
+  return new Line(lineWords, lineTemplate);
 }
 
 Word* PoemGenerator::getWordForTemplate(WordTemplate *wordTemplate) {
