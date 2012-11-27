@@ -1,5 +1,5 @@
 #include <cstdio>
-#include <xercesc/util/PlatformUtils.hpp>
+#include <xercesc/dom/DOM.hpp>
 
 #include "poem_generator.h"
 #include "renderer.h"
