@@ -4,9 +4,9 @@
 
 #include "poem_generator.h"
 
-PoemGenerator::PoemGenerator() {
+PoemGenerator::PoemGenerator(WordRepository *wordRepository) {
   srand(time(0));
-  this->loadWordRepository();
+  this->wordRepository = wordRepository;
   this->loadTemplateRepository();
   printf("[ DEBUG ] created poem generator\n");
 }
@@ -28,15 +28,6 @@ Poem* PoemGenerator::getPoem() {
   printf("[ DEBUG ] generated lines\n");
   Poem *poem = new Poem(lines);
   return poem;
-}
-
-void PoemGenerator::loadWordRepository() {
-  this->wordRepository.add(new Word("古池", "ふるいけ", "furuike", "old pond", "noun:place"));
-  this->wordRepository.add(new Word("蛙", "かわず", "kawazu", "frog", "noun:animal"));
-  this->wordRepository.add(new Word("飛び込む", "とびこむ", "tobikomu", "leap in", "verb"));
-  this->wordRepository.add(new Word("水", "みず", "mizu", "water", "noun:element"));
-  this->wordRepository.add(new Word("音", "おと", "oto", "sound", "noun:element"));
-  printf("[ DEBUG ] loaded word repository\n");
 }
 
 void PoemGenerator::loadTemplateRepository() {
@@ -64,5 +55,5 @@ PoemTemplate* PoemGenerator::getRandomTemplate() {
 }
 
 Word* PoemGenerator::getWordForTemplate(WordTemplate *wordTemplate) {
-  return this->wordRepository.getWordForTemplate(wordTemplate);
+  return this->wordRepository->getWordForTemplate(wordTemplate);
 }

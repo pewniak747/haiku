@@ -8,14 +8,13 @@
 
 class PoemGenerator {
   public:
-    PoemGenerator();
+    PoemGenerator(WordRepository *wordRepository);
     Poem* getPoem();
   private:
-    void loadWordRepository();
     void loadTemplateRepository();
     PoemTemplate *getRandomTemplate();
     Word* getWordForTemplate(WordTemplate *wordTemplate);
-    WordRepository wordRepository;
+    WordRepository *wordRepository;
     PoemTemplateRepository templateRepository;
 };
 
