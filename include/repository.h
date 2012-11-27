@@ -10,19 +10,10 @@
 template<typename T>
 class Repository {
   public:
-    void add(T *element) {
-      elements.push_back(element);
-    };
-    T* getRandomElement() {
-      int random = rand() % elements.size();
-      return elements[random];
-    };
-    unsigned size() {
-      return elements.size();
-    }
-    T* getElement(unsigned index) {
-      return elements[index];
-    }
+    void add(T *element);
+    unsigned size();
+    T* getElement(unsigned index);
+    T* getRandomElement();
   protected:
     std::vector<T*> elements;
 };
@@ -40,5 +31,26 @@ class WordRepository : public Repository<Word> {
 };
 
 class PoemTemplateRepository : public Repository<PoemTemplate> {};
+
+template<typename T>
+void Repository<T>::add(T *element) {
+  return elements.push_back(element);
+}
+
+template<typename T>
+unsigned Repository<T>::size() {
+  return elements.size();
+}
+
+template<typename T>
+T* Repository<T>::getElement(unsigned index) {
+  return elements[index];
+};
+
+template<typename T>
+T* Repository<T>::getRandomElement() {
+  int random = rand() % elements.size();
+  return elements[random];
+};
 
 #endif // REPOSITORY_H
