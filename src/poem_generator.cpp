@@ -14,8 +14,7 @@ Poem* PoemGenerator::getPoem() {
   std::vector<Line*> lines;
   for(unsigned i = 0; i < poemTemplate->linesCount(); i++) {
     LineTemplate *lineTemplate = poemTemplate->getLine(i);
-    Line *newLine = getLineForTemplate(lineTemplate);
-    lines.push_back(newLine);
+    lines.push_back(getLineForTemplate(lineTemplate));
   }
   return new Poem(lines);
 }
