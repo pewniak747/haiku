@@ -1,4 +1,5 @@
 #include <cstdio>
+#include <xercesc/dom/DOM.hpp>
 
 #include "template_parser.h"
 
@@ -7,22 +8,42 @@ TemplateParser::TemplateParser(std::string fileName) {
 }
 
 void TemplateParser::parse() {
-  std::vector<WordTemplate*> firstLineWords;
-  firstLineWords.push_back(new WordTemplate("noun:place"));
-  std::vector<WordTemplate*> secondLineWords;
-  secondLineWords.push_back(new WordTemplate("noun:animal"));
-  secondLineWords.push_back(new WordTemplate("verb:*"));
-  std::vector<WordTemplate*> thirdLineWords;
-  thirdLineWords.push_back(new WordTemplate("noun:element"));
-  thirdLineWords.push_back(new WordTemplate("noun:element"));
-  LineTemplate *firstLine = new LineTemplate(firstLineWords, "$1や", "$1 ya", "at a $1");
-  LineTemplate *secondLine = new LineTemplate(secondLineWords, "$1$2", "$1 $2", "a $1 $2");
-  LineTemplate *thirdLine = new LineTemplate(thirdLineWords, "$1の$2", "$1 no $2", "$1 of $2");
-  std::vector<LineTemplate*> threeLines;
-  threeLines.push_back(firstLine);
-  threeLines.push_back(secondLine);
-  threeLines.push_back(thirdLine);
-  parsedElements.push_back(new PoemTemplate(threeLines));
+  DOMImplementation* dom_xml = DOMImplementationRegistry::getDOMImplementation(XMLString::transcode(""));
+  DOMLSParser* dom_file = dom_xml->createLSParser(DOMImplementationLS::MODE_SYNCHRONOUS, 0);
+  DOMDocument* dom_doc  = dom_file->parseURI(xmlFileName.c_str());
+  DOMElement*  dom_root = dom_doc->getDocumentElement();
+
+  for (DOMNode* dom_child=dom_root->getFirstChild(); dom_child != 0; dom_child=dom_child->getNextSibling()) {
+    if (dom_child->getNodeType() == DOMNode::ELEMENT_NODE && strcmp(XMLString::transcode(dom_child->getNodeName()), "template") == 0) {
+      std::vector<LineTemplate*> lines;
+
+      for(DOMNode* nestedChild=dom_child->getFirstChild(); nestedChild != 0; nestedChild = nestedChild->getNextSibling()) {
+        char *name = XMLString::transcode(nestedChild->getNodeName());
+        if(strcmp(name, "line") == 0) {
+          std::string japaneseString, romajiString, englishString;
+          std::vector<WordTemplate*> words;
+          for(DOMNode* nestedNestedChild=nestedChild->getFirstChild(); nestedNestedChild != 0; nestedNestedChild = nestedNestedChild->getNextSibling()) {
+            char *name = XMLString::transcode(nestedNestedChild->getNodeName());
+            char *value = XMLString::transcode(nestedNestedChild->getTextContent());
+            if(strcmp(name, "japanese") == 0) {
+              japaneseString = value;
+            }
+            else if(strcmp(name, "romaji") == 0) {
+              romajiString = value;
+            }
+            else if(strcmp(name, "english") == 0) {
+              englishString = value;
+            }
+            else if(strcmp(name, "word") == 0) {
+              words.push_back(new WordTemplate(value));
+            }
+          }
+          lines.push_back(new LineTemplate(words, japaneseString, romajiString, englishString));
+        }
+      }
+      parsedElements.push_back(new PoemTemplate(lines));
+    }
+  }
 }
 
 void TemplateParser::loadToRepository(PoemTemplateRepository *repository) {

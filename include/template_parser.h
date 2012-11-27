@@ -6,6 +6,8 @@
 
 #include "repository.h"
 
+using namespace xercesc;
+
 class TemplateParser {
   public:
     TemplateParser(std::string fileName);
