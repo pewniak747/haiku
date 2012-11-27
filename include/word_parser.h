@@ -6,6 +6,8 @@
 
 #include "repository.h"
 
+using namespace xercesc;
+
 class WordParser {
   public:
     WordParser(std::string fileName);
