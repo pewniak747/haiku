@@ -16,6 +16,7 @@ class Parser {
     virtual void parse() = 0;
     void loadToRepository(Repository<T> *repository);
   protected:
+    DOMElement *getXMLRoot();
     std::string xmlFileName;
     std::vector<T*> parsedElements;
 };
@@ -33,23 +34,27 @@ class TemplateParser : public Parser<PoemTemplate> {
 };
 
 template<typename T>
+Parser<T>::Parser(std::string fileName) {
+  this->xmlFileName = fileName;
+}
+
+template<typename T>
+DOMElement* Parser<T>::getXMLRoot() {
+  DOMImplementation* dom_xml = DOMImplementationRegistry::getDOMImplementation(XMLString::transcode(""));
+  DOMLSParser* dom_file = dom_xml->createLSParser(DOMImplementationLS::MODE_SYNCHRONOUS, 0);
+  DOMDocument* dom_doc  = dom_file->parseURI(xmlFileName.c_str());
+  return dom_doc->getDocumentElement();
+}
+
+template<typename T>
 void Parser<T>::loadToRepository(Repository<T> *repository) {
   for(unsigned i = 0; i < parsedElements.size(); i++) {
     repository->add(parsedElements[i]);
   }
 }
 
-template<typename T>
-Parser<T>::Parser(std::string fileName) {
-  this->xmlFileName = fileName;
-}
-
 void WordParser::parse() {
-  DOMImplementation* dom_xml = DOMImplementationRegistry::getDOMImplementation(XMLString::transcode(""));
-  DOMLSParser* dom_file = dom_xml->createLSParser(DOMImplementationLS::MODE_SYNCHRONOUS, 0);
-  DOMDocument* dom_doc  = dom_file->parseURI(xmlFileName.c_str());
-  DOMElement*  dom_root = dom_doc->getDocumentElement();
-
+  DOMElement *dom_root = getXMLRoot();
   for (DOMNode* dom_child=dom_root->getFirstChild(); dom_child != 0; dom_child=dom_child->getNextSibling()) {
     if (dom_child->getNodeType() == DOMNode::ELEMENT_NODE && strcmp(XMLString::transcode(dom_child->getNodeName()), "word") == 0) {
       std::string kanjiString, kanaString, romajiString, englishString, typeString;
@@ -87,11 +92,7 @@ void WordParser::parse() {
 }
 
 void TemplateParser::parse() {
-  DOMImplementation* dom_xml = DOMImplementationRegistry::getDOMImplementation(XMLString::transcode(""));
-  DOMLSParser* dom_file = dom_xml->createLSParser(DOMImplementationLS::MODE_SYNCHRONOUS, 0);
-  DOMDocument* dom_doc  = dom_file->parseURI(xmlFileName.c_str());
-  DOMElement*  dom_root = dom_doc->getDocumentElement();
-
+  DOMElement *dom_root = getXMLRoot();
   for (DOMNode* dom_child=dom_root->getFirstChild(); dom_child != 0; dom_child=dom_child->getNextSibling()) {
     if (dom_child->getNodeType() == DOMNode::ELEMENT_NODE && strcmp(XMLString::transcode(dom_child->getNodeName()), "template") == 0) {
       std::vector<LineTemplate*> lines;
