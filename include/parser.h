@@ -64,14 +64,19 @@ void WordParser::parse() {
   for (DOMNode* domChild=domRoot->getFirstChild(); domChild != 0; domChild=domChild->getNextSibling()) {
     if (domChild->getNodeType() == DOMNode::ELEMENT_NODE && strcmp(XMLString::transcode(domChild->getNodeName()), "word") == 0) {
       std::string kanjiString, kanaString, romajiString, englishString, typeString;
+      unsigned syllabesNum;
 
       DOMNamedNodeMap *domAttrs = domChild->getAttributes();
       int num= domAttrs->getLength();
       for(int i=0; i < num; i++) {
         DOMAttr* domAttr = (DOMAttr*) domAttrs->item(i);
         char* name = XMLString::transcode(domAttr->getName());
+        char* value = XMLString::transcode(domAttr->getValue());
         if(strcmp(name, "type") == 0) {
-          typeString = XMLString::transcode(domAttr->getValue());
+          typeString = value;
+        }
+        else if(strcmp(name, "syllabes") == 0) {
+          syllabesNum = atoi(value);
         }
       }
 
@@ -92,7 +97,7 @@ void WordParser::parse() {
         }
       }
 
-      pushElement(new Word(kanjiString, kanaString, romajiString, englishString, typeString));
+      pushElement(new Word(kanjiString, kanaString, romajiString, englishString, typeString, syllabesNum));
     }
   }
 }

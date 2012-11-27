@@ -1,29 +1,29 @@
 <words>
-  <word type="noun:place" >
+  <word type="noun:place" syllabes="4" >
     <kanji>古池</kanji>
     <kana>ふるいけ</kana>
     <romaji>furuike</romaji>
     <english>old pond</english>
   </word>
-  <word type="noun:animal" >
+  <word type="noun:animal" syllabes="3" >
     <kanji>蛙</kanji>
     <kana>かわず</kana>
     <romaji>kawazu</romaji>
     <english>frog</english>
   </word>
-  <word type="verb" >
+  <word type="verb" syllabes="4" >
     <kanji>飛び込む</kanji>
     <kana>とびこむ</kana>
     <romaji>tobikomu</romaji>
     <english>leap in</english>
   </word>
-  <word type="noun:element" >
+  <word type="noun:element" syllabes="2" >
     <kanji>水</kanji>
     <kana>みず</kana>
     <romaji>mizu</romaji>
     <english>water</english>
   </word>
-  <word type="noun:element" >
+  <word type="noun:element" syllabes="2" >
     <kanji>音</kanji>
     <kana>おと</kana>
     <romaji>oto</romaji>
