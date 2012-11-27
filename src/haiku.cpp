@@ -1,7 +1,10 @@
 #include <cstdio>
+#include <xercesc/util/PlatformUtils.hpp>
 
 #include "poem_generator.h"
 #include "renderer.h"
+
+using namespace xercesc;
 
 int main() {
   PoemGenerator *poemGenerator = new PoemGenerator();
