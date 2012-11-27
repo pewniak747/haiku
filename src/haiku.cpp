@@ -2,8 +2,7 @@
 #include <xercesc/dom/DOM.hpp>
 
 #include "poem_generator.h"
-#include "word_parser.h"
-#include "template_parser.h"
+#include "parser.h"
 #include "renderer.h"
 
 using namespace xercesc;
